@@ -548,10 +548,16 @@
     bulbs.forEach((b, i) => b.classList.toggle('on', slotBusy ? (i + lightTick) % 3 === 0 : (i + Math.floor(lightTick / 3)) % 2 === 0));
   }, 120);
 
+  /* A demo's status tag: where the game is, not a button. */
+  function setTag(tag, label, busy) {
+    $('b', tag).textContent = label;
+    tag.classList.toggle('busy', !!busy);
+  }
+
   /* ---------------------------------------------------------
      GAME 04 — Scratch Card (two foils: silver, then copper)
      --------------------------------------------------------- */
-  const scFoil = $('#scFoil'), scPanel = $('#scPanel'), scMsg = $('#scMsg'), scBtn = $('#scBtn');
+  const scFoil = $('#scFoil'), scPanel = $('#scPanel'), scMsg = $('#scMsg'), scTag = $('#scTag');
   const scLeftEl = $('#scLeft');
   // What can be under the foil; null is a Try again card.
   const SC_PRIZES = [
@@ -559,7 +565,7 @@
     ['🧺', 'A gift hamper'], ['🏆', 'The Grand Prize'], null, null,
   ];
   const scCtx = scFoil.getContext('2d');
-  const SC_COLS = 24, SC_ROWS = 18, SC_REVEAL = .6;
+  const SC_COLS = 24, SC_ROWS = 18, SC_REVEAL = .8, SC_PASSES = 3;
   let scWear, scPrize, scDone, scLast;
   function paintFoil() {
     const r = scPanel.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
@@ -592,23 +598,24 @@
     scLeftEl.textContent = '1';
     scMsg.classList.remove('win');
     scMsg.textContent = 'Rub the silver foil, then the copper under it.';
+    setTag(scTag, 'Scratch the card', true);
     paintFoil();
   }
   function scratchAt(e) {
     if (scDone) return;
     const r = scFoil.getBoundingClientRect(), dpr = scFoil.width / r.width;
-    const x = (e.clientX - r.left) * dpr, y = (e.clientY - r.top) * dpr, rad = 13 * dpr;
+    const x = (e.clientX - r.left) * dpr, y = (e.clientY - r.top) * dpr, rad = 15 * dpr;
     // Each pass wears the foil only partly: the first rubs reveal copper,
-    // more of them reach the prize.
+    // about three reach the prize.
     scCtx.globalCompositeOperation = 'destination-out';
-    scCtx.strokeStyle = 'rgba(0,0,0,.35)'; scCtx.lineWidth = rad * 2; scCtx.lineCap = 'round';
+    scCtx.strokeStyle = 'rgba(0,0,0,.5)'; scCtx.lineWidth = rad * 2; scCtx.lineCap = 'round';
     scCtx.beginPath(); scCtx.moveTo(scLast ? scLast[0] : x, scLast ? scLast[1] : y); scCtx.lineTo(x, y); scCtx.stroke();
     scLast = [x, y];
     const cw = scFoil.width / SC_COLS, ch = scFoil.height / SC_ROWS;
     for (let c = 0; c < SC_COLS; c++) for (let rr = 0; rr < SC_ROWS; rr++) {
       if (Math.hypot((c + .5) * cw - x, (rr + .5) * ch - y) <= rad && scWear[rr * SC_COLS + c] < 255) scWear[rr * SC_COLS + c]++;
     }
-    const cleared = scWear.reduce((n, v) => n + (v >= 4), 0) / scWear.length;
+    const cleared = scWear.reduce((n, v) => n + (v >= SC_PASSES), 0) / scWear.length;
     if (cleared >= SC_REVEAL) revealCard();
   }
   function revealCard() {
@@ -617,24 +624,25 @@
     scLeftEl.textContent = scPrize ? '0' : '1';
     scMsg.classList.toggle('win', !!scPrize);
     scMsg.innerHTML = scPrize ? `<b>You won ${esc(scPrize[1].replace(/^A |^The /, m => m.toLowerCase()))}!</b>` : 'Try again. <b>You get an extra card.</b>';
-    scBtn.textContent = scPrize ? 'New card' : 'Use extra card';
+    // As in the app: the next card is dealt by itself.
+    setTag(scTag, 'Next card on its way', false);
+    setTimeout(newCard, RM ? 600 : 2600);
   }
   let scDown = false;
   scFoil.addEventListener('pointerdown', e => { scDown = true; scLast = null; scFoil.setPointerCapture(e.pointerId); scratchAt(e); });
   scFoil.addEventListener('pointermove', e => { if (scDown) scratchAt(e); });
   ['pointerup', 'pointercancel'].forEach(t => scFoil.addEventListener(t, () => { scDown = false; scLast = null; }));
-  scBtn.addEventListener('click', newCard);
   addEventListener('resize', () => { if (!scDone) newCard(); });
   newCard();
 
   /* ---------------------------------------------------------
      GAME 05 — Gift Box (pick one of six shuffled boxes)
      --------------------------------------------------------- */
-  const gbGrid = $('#gbGrid'), gbMsg = $('#gbMsg'), gbBtn = $('#gbBtn'), gbLeftEl = $('#gbLeft');
+  const gbGrid = $('#gbGrid'), gbMsg = $('#gbMsg'), gbTag = $('#gbTag'), gbLeftEl = $('#gbLeft');
   // What the brand put in the six boxes; null is an empty box.
   const GB_FILL = [['🎧', 'Earbuds'], ['🧺', 'Gift hamper'], null, ['🎟️', 'Voucher'], null, null];
   gbGrid.innerHTML = Array.from({ length: GB_FILL.length }, (_, i) =>
-    `<button type="button" class="gb-box" aria-label="Box ${i + 1}"><span class="gb-out"><i></i><span></span></span><span class="gb-body"><b class="gb-num">${i + 1}</b></span><span class="gb-lid"></span></button>`
+    `<button type="button" class="gb-box" aria-label="Box ${i + 1}"><span class="gb-hole"></span><span class="gb-out"><i></i></span><span class="gb-body"><b class="gb-num">${i + 1}</b></span><span class="gb-lid"></span><span class="gb-tag"></span></button>`
   ).join('');
   const gbBoxes = $$('.gb-box', gbGrid);
   let gbBusy = false;
@@ -643,6 +651,7 @@
     gbLeftEl.textContent = '1';
     gbMsg.classList.remove('win');
     gbMsg.textContent = "Pick a box. What's inside?";
+    setTag(gbTag, 'Pick a box', false);
     gbBusy = false;
   }
   function pickBox(i) {
@@ -654,27 +663,30 @@
     gbBoxes.forEach(b => { b.disabled = true; if (b !== picked) b.classList.add('dim'); });
     picked.classList.add('wobble');
     gbMsg.textContent = 'Opening your box…';
+    setTag(gbTag, 'Opening…', true);
     setTimeout(() => {
       picked.classList.remove('wobble');
       const out = $('.gb-out', picked);
       out.classList.toggle('empty', !content);
       $('i', out).textContent = content ? content[0] : '💨';
-      $('span', out).textContent = content ? content[1] : 'Try again';
+      const tag = $('.gb-tag', picked);
+      tag.classList.toggle('empty', !content);
+      tag.textContent = content ? content[1] : 'Try again';
       picked.classList.add('open');
       if (content) {
         gbMsg.classList.add('win');
-        gbMsg.innerHTML = `<b>You found ${esc(content[1].toLowerCase())}!</b>`;
+        gbMsg.innerHTML = `<b>You won: ${esc(content[1])}!</b>`;
         gbLeftEl.textContent = '0';
-        gbBtn.textContent = 'Play again';
       } else {
         boxes.forEach((c, j) => { if (c && j !== i) { gbBoxes[j].classList.remove('dim'); gbBoxes[j].classList.add('had'); } });
         gbMsg.innerHTML = 'Empty. <b>You get another pick.</b>';
-        gbBtn.textContent = 'Pick again';
       }
+      // As in the app: once the result has been seen, every box closes again.
+      setTag(gbTag, content ? 'You found a gift' : 'Pick again', false);
+      setTimeout(resetBoxes, RM ? 800 : content ? 2800 : 2200);
     }, RM ? 50 : 900);
   }
   gbBoxes.forEach((b, i) => b.addEventListener('click', () => pickBox(i)));
-  gbBtn.addEventListener('click', resetBoxes);
   resetBoxes();
 
   /* ---------------------------------------------------------

@@ -862,6 +862,11 @@ svg.side-art{ display:block; width:100%; max-width:320px; }
 .q-go i{ font-style:normal; display:grid; place-items:center; width:28px; height:28px; flex:none; border-radius:50%; border:1px solid var(--line-2); color:var(--accent); transition:background .25s, color .25s, border-color .25s, transform .3s var(--ease); }
 .an-q-list button:hover .q-go{ color:var(--accent); }
 .an-q-list button:hover .q-go i{ background:var(--accent); border-color:var(--accent); color:#fff; transform:translateX(3px); }
+/* ---------- Status tag: where a self-play demo is, not a button ---------- */
+.st-tag{ display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:999px; border:1px solid rgba(177,139,255,.5); background:rgba(0,0,0,.25); font:700 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--stage-ink); }
+.st-tag i{ width:8px; height:8px; border-radius:50%; background:var(--stage-muted); }
+.st-tag.busy i{ background:var(--stage-accent); box-shadow:0 0 8px var(--stage-accent); }
+
 /* ---------- Game 04 · Scratch Card ---------- */
 .sc-ticket{
   position:relative; z-index:1; width:min(100%, 330px); margin:auto; padding:18px 18px 20px; border-radius:22px;
@@ -890,19 +895,26 @@ svg.side-art{ display:block; width:100%; max-width:320px; }
 .gb-body{ position:absolute; left:7%; right:7%; bottom:0; height:62%; border-radius:0 0 8px 8px; background:linear-gradient(135deg, #2f8fe8, #1c63b8); }
 .gb-body::before{ content:""; position:absolute; left:40%; width:20%; top:0; bottom:0; background:#ffa726; }
 .gb-num{ position:absolute; left:6px; bottom:4px; font:900 15px/1 var(--display); color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.4); }
-.gb-lid{ position:absolute; left:0; right:0; bottom:60%; height:26%; border-radius:6px; background:linear-gradient(180deg, #45a3f5, #2f8fe8); box-shadow:0 2px 4px rgba(0,0,0,.25); transition:transform .45s cubic-bezier(.2,1.4,.4,1), opacity .45s var(--ease); }
+.gb-lid{ position:absolute; left:0; right:0; bottom:60%; height:26%; border-radius:6px; background:linear-gradient(180deg, #45a3f5, #2f8fe8); box-shadow:0 2px 4px rgba(0,0,0,.25); z-index:3; transition:transform .5s cubic-bezier(.2,1.5,.4,1); }
 .gb-lid::before{ content:""; position:absolute; left:41%; width:18%; top:0; bottom:0; background:#ffa726; }
 .gb-lid::after{ content:"🎀"; position:absolute; left:50%; bottom:62%; transform:translateX(-50%); font-size:clamp(22px, 5vw, 34px); line-height:1; }
-.gb-box.open .gb-lid{ transform:translate(30%, -140%) rotate(28deg); opacity:0; }
-.gb-box.open .gb-body{ background:linear-gradient(180deg, #0d2e57 0 22%, #2f8fe8 22%, #1c63b8); }
+/* Open: the lid lifts, tips a little and hovers above the box, bow and all. */
+.gb-box.open .gb-lid{ transform:translate(3%, -230%) rotate(-9deg); animation:gbHover 1.4s ease-in-out .5s infinite alternate; }
+@keyframes gbHover{ from{ transform:translate(3%, -230%) rotate(-9deg) } to{ transform:translate(3%, -250%) rotate(-7deg) } }
+/* The opening, then the prize rising out of it, then the box's front over its lower half. */
+.gb-hole{ position:absolute; left:7%; right:7%; bottom:55%; height:15%; border-radius:6px; background:linear-gradient(180deg, #0b2547, #14427e); border:3px solid #2f8fe8; opacity:0; z-index:0; }
+.gb-box.open .gb-hole{ opacity:1; }
+.gb-body{ z-index:2; }
 .gb-box.wobble{ animation:gbWobble .42s ease-in-out infinite; }
 @keyframes gbWobble{ 0%,100%{ transform:rotate(0) } 25%{ transform:rotate(-6deg) } 75%{ transform:rotate(6deg) } }
-.gb-out{ position:absolute; left:50%; bottom:58%; transform:translate(-50%, 30%) scale(.3); opacity:0; display:grid; justify-items:center; gap:4px; transition:transform .6s cubic-bezier(.2,1.4,.4,1), opacity .3s var(--ease); pointer-events:none; }
-.gb-box.open .gb-out{ transform:translate(-50%, 0) scale(1); opacity:1; }
-.gb-out i{ display:grid; place-items:center; width:46px; height:46px; border-radius:50%; background:#fff; font-style:normal; font-size:24px; box-shadow:0 0 18px rgba(177,139,255,.8); }
-.gb-out span{ white-space:nowrap; font:800 11px/1 var(--sans); padding:4px 8px; border-radius:999px; background:var(--stage-accent); color:#1b0b3a; }
+.gb-out{ position:absolute; left:50%; bottom:54%; z-index:1; transform:translate(-50%, 45%); opacity:0; transition:transform .7s cubic-bezier(.2,1.5,.4,1), opacity .2s var(--ease); pointer-events:none; }
+.gb-box.open .gb-out{ transform:translate(-50%, 0); opacity:1; }
+.gb-out i{ display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:#fff; font-style:normal; font-size:26px; box-shadow:0 0 18px rgba(177,139,255,.8); }
 .gb-out.empty i{ box-shadow:none; }
-.gb-out.empty span{ background:rgba(0,0,0,.55); color:#fff; }
+/* The prize's name across the front, where the box's number sits in the classic art. */
+.gb-tag{ position:absolute; left:50%; bottom:18%; z-index:4; transform:translateX(-50%) scale(.6); opacity:0; white-space:nowrap; font:800 11px/1 var(--sans); padding:4px 8px; border-radius:999px; background:var(--stage-accent); color:#1b0b3a; box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .4s cubic-bezier(.2,1.5,.4,1) .3s, opacity .3s var(--ease) .3s; pointer-events:none; }
+.gb-tag.empty{ background:rgba(0,0,0,.8); color:#fff; }
+.gb-box.open .gb-tag{ transform:translateX(-50%) scale(1); opacity:1; }
 .gb-box.had::after{ content:"It was here!"; position:absolute; left:50%; top:-22px; transform:translateX(-50%); white-space:nowrap; font:800 10px/1 var(--sans); padding:4px 8px; border-radius:999px; background:var(--stage-accent); color:#1b0b3a; }
 .gb-box.had .gb-body{ box-shadow:0 0 22px 4px rgba(177,139,255,.7); }
 
@@ -1039,7 +1051,7 @@ svg.side-art{ display:block; width:100%; max-width:320px; }
 }
 
 @media (prefers-reduced-motion: reduce){
-  .gb-box.wobble{ animation:none; }
+  .gb-box.wobble,.gb-box.open .gb-lid{ animation:none; }
   html{ scroll-behavior:auto; }
   *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; }
   .js .rv{ transition-duration:.001ms !important; }
