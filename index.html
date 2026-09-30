@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Winzy | Make Every Campaign a Chance to Win</title>
+<meta name="description" content="Winzy gives brands two ways to engage: campaigns where people take part and win in a live draw, and game campaigns they play live or on their own. The brand creates and controls both, with rewards and analytics built in.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="Winzy home"><img class="brand-logo" src="assets/winzy-logo.png" alt="" width="40" height="35">Winzy</a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#platform">Platform</a>
+    <a href="#campaigns">Campaigns</a>
+    <a href="#live">Live draw</a>
+    <a href="#games">Games</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#how">How it works</a>
+  </nav>
+  <div class="nav-end">
+    <a href="#demo" class="btn btn-primary btn-sm">Request a Demo</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker rv">Campaigns · Live draws · Games · Rewards</p>
+      <h1 class="h1 rv" style="--d:120ms">Make every campaign a chance to <em>win.</em></h1>
+      <p class="lede rv" style="--d:260ms">Run campaigns where people participate and win in a live draw, or game campaigns they play live or on their own. You control both, with rewards and analytics built in.</p>
+      <div class="ctas rv" style="--d:380ms">
+        <a href="#demo" class="btn btn-primary">Request a Demo <span class="arr">→</span></a>
+        <a href="#platform" class="btn btn-line">See the Platform</a>
+      </div>
+    </div>
+
+    <div class="hero-art rv" style="--d:200ms" id="heroArt" aria-hidden="true">
+      <div class="ha-glow"></div>
+      <div class="ha ha-wheel" data-d="0.5">
+        <canvas class="wheel-cv" id="heroWheel"></canvas>
+      </div>
+      <div class="ha ha-live" data-d="1.1"><span class="dot"></span><span><b>Jhandi Burja</b> is live · <span id="heroPlayers">2,431</span> playing</span></div>
+      <div class="ha ha-slot" data-d="1.4">
+        <div class="mslot"><div class="mslot-top">WINZY</div><div class="mslot-win" id="heroSlot"></div></div>
+      </div>
+      <div class="ha ha-d1" data-d="1.8"><div class="die tumble" data-die style="--s:68px;--td:18s"></div></div>
+      <div class="ha ha-d2" data-d="1.3"><div class="die tumble" data-die style="--s:50px;--td:14s"></div></div>
+      <div class="ha ha-ticket" data-d="1.1"><div class="ticket"><span>Participant ID<small>Dashain · live draw</small></span><b>#7Q4K2M</b></div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-flows rv" style="--d:500ms">
+      <div class="hf">
+        <span class="hf-tag">Campaigns</span>
+        <ol class="hf-steps" aria-label="Campaign flow"><li>Event</li><li>Campaign</li><li>Participate</li><li>Live draw</li><li class="end">Prize</li></ol>
+      </div>
+      <div class="hf">
+        <span class="hf-tag">Games</span>
+        <ol class="hf-steps" aria-label="Game flow"><li>Game</li><li>Game campaign</li><li>Play</li><li class="end">Reward</li></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ IDEA / TWO SYSTEMS ============================ -->
+<section class="sec idea" id="idea">
+  <div class="wrap">
+    <p class="kicker rv">The Winzy idea</p>
+    <h2 class="h2 idea-h">
+      <span class="rv">Attention is easy to get.</span>
+      <span class="rv muted" style="--d:140ms">Participation is harder.</span>
+    </h2>
+    <p class="idea-turn rv" style="--d:260ms">Two ways to win it. <em>One brand</em> runs both.</p>
+
+    <div class="systems">
+      <article class="system rv">
+        <header><span class="sys-no">System 01</span><h3>Participation</h3><p>Take part, get a Participant ID, win in the live draw.</p></header>
+        <ol class="chain">
+          <li>Event</li><li>Campaign</li><li>Participation method</li><li>Participant</li><li>Live draw</li><li class="end">Campaign prize</li>
+        </ol>
+        <a href="#campaigns" class="sys-link">See campaigns &amp; live draw →</a>
+      </article>
+      <div class="neq rv" style="--d:100ms" aria-label="Participation is not the same as Games"><span>≠</span><small>Two separate systems</small></div>
+      <article class="system rv" style="--d:200ms">
+        <header><span class="sys-no">System 02</span><h3>Games</h3><p>Pick a brand's game campaign, play and win. Jhandi Burja runs live; Spin &amp; Win and Slot Machine you play yourself.</p></header>
+        <ol class="chain">
+          <li>Game</li><li>Brand game campaign</li><li>User selects campaign</li><li>Live room or self play</li><li>Play game</li><li class="end">Game reward</li>
+        </ol>
+        <a href="#games" class="sys-link">See games &amp; daily rewards →</a>
+      </article>
+    </div>
+    <p class="systems-note rv">Both are created and controlled by the brand through campaigns, with its own events, participation methods, games, rules and rewards.</p>
+    <ol class="flow-strip overall rv" aria-label="The whole platform">
+      <li>Brands</li><li>Events</li><li>Campaigns</li><li>Participation / Games</li><li>Live experience</li><li>Rewards</li><li class="end">Analytics</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ PLATFORM ============================ -->
+<section class="sec alt platform" id="platform">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">One platform</p>
+      <h2 class="h2 rv" style="--d:100ms">Built for brands. Made for <em>participants.</em></h2>
+      <p class="lede rv" style="--d:200ms">The brand sets everything up. Participants take part, play and win by the rules the brand chose.</p>
+    </div>
+    <div class="sides">
+      <article class="side frame rv">
+        <span class="side-no">For brands</span>
+        <h3>Brands</h3>
+        <svg class="side-art tree" viewBox="0 0 300 92" aria-hidden="true">
+          <path d="M150 30v14M150 44H50v16M150 44h100v16M150 44v16" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <rect x="110" y="4" width="80" height="26" rx="8" class="fill-p"/><text x="150" y="21" text-anchor="middle" class="t-w">Brand</text>
+          <rect x="4" y="60" width="92" height="28" rx="8" class="fill-s"/><text x="50" y="78" text-anchor="middle" class="t-i">Events</text>
+          <rect x="104" y="60" width="92" height="28" rx="8" class="fill-s"/><text x="150" y="78" text-anchor="middle" class="t-i">Campaigns</text>
+          <rect x="204" y="60" width="92" height="28" rx="8" class="fill-s"/><text x="250" y="78" text-anchor="middle" class="t-i">Games</text>
+        </svg>
+        <ul>
+          <li>Choose an event and create campaigns under it</li>
+          <li>Set the participation method, required for every campaign</li>
+          <li>Open game campaigns with their own rules and rewards</li>
+          <li>Set the rules and rewards for every campaign</li>
+        </ul>
+      </article>
+      <article class="side frame rv" style="--d:100ms">
+        <span class="side-no">For participants</span>
+        <h3>Take part, play, win</h3>
+        <div class="side-art flowline" aria-hidden="true"><span>Take part</span><i>→</i><span>Live draw</span><em>or</em><span>Play</span><i>→</i><span class="on">Win</span></div>
+        <ul>
+          <li>Take part in a campaign and get a unique Participant ID</li>
+          <li>Win the campaign prize in the live draw</li>
+          <li>Browse brand game campaigns and join a live room</li>
+          <li>Play and win by that campaign's rules</li>
+        </ul>
+      </article>
+      <article class="side frame rv" style="--d:200ms">
+        <span class="side-no">Every day</span>
+        <h3>Daily rewards</h3>
+        <div class="side-art streak" aria-hidden="true">
+          <span class="done">Sun</span><span class="done">Mon</span><span class="done">Tue</span><span class="done">Wed</span><span class="today">Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <ul>
+          <li>Game campaigns can reward play every day</li>
+          <li>Switched on by the brand, per game campaign</li>
+          <li>Keeps people coming back between campaigns</li>
+          <li>Jhandi Burja, Spin &amp; Win and Slot Machine</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SYSTEM 01 · CAMPAIGNS ============================ -->
+<!-- Mirrors the backend: ParticipationMethod, WinnerSelectionStrategy, CampaignStatus. -->
+<section class="sec campaigns" id="campaigns">
+  <div class="wrap">
+    <div class="sec-head wide">
+      <p class="kicker rv">System 01 · Campaign &amp; live draw</p>
+      <h2 class="h2 rv" style="--d:100ms">Campaigns people take part in and win <em>live.</em></h2>
+      <ol class="flow-strip rv" style="--d:200ms" aria-label="Campaign flow">
+        <li>Brand</li><li>Choose event</li><li>Create campaign</li><li>Set participation method</li><li>Users participate</li><li>Live draw</li><li class="end">Win campaign prize</li>
+      </ol>
+    </div>
+
+    <div class="block">
+      <header class="block-head rv"><span>01</span><h3>Participation method</h3><p>Required for every campaign.</p></header>
+      <div class="entry">
+        <div class="entry-tabs rv" id="entryTabs" role="tablist" aria-label="Participation methods"></div>
+        <div class="entry-panel frame rv" id="entryPanel" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <header class="block-head rv"><span>02</span><h3>Unique Participant ID</h3><p>Every participant gets one.</p></header>
+      <div class="pid">
+        <div class="pid-copy rv">
+          <p class="lede">When someone takes part, Winzy issues a unique <b>Participant ID</b>. Eligible IDs go into the live draw, and the ID that's drawn is matched back to the participant.</p>
+          <div class="pid-facts">
+            <div class="pid-fact"><b>6</b><span>characters. The reference a winner quotes to claim.</span></div>
+            <div class="pid-fact"><b>3</b><span>ways to pick: random, closest answer or highest score</span></div>
+            <div class="pid-fact"><b>✓</b><span>only eligible IDs are drawn, by the campaign's rules</span></div>
+          </div>
+        </div>
+        <div class="pid-visual rv" style="--d:120ms" aria-hidden="true">
+          <div class="idt">
+            <div class="idt-stub">
+              <small>Participant ID</small>
+              <b>#7Q4K2M</b>
+              <span class="idt-ok">✓ In the live draw</span>
+            </div>
+            <dl class="idt-body">
+              <div><dt>Participant</dt><dd>Sita K.</dd></div>
+              <div><dt>Participation</dt><dd>Bill Scan</dd></div>
+              <div><dt>Campaign</dt><dd>Dashain Mega Draw</dd></div>
+              <div><dt>Event</dt><dd>Dashain Festival</dd></div>
+            </dl>
+          </div>
+          <div class="idt-more"><span>Other IDs in this draw</span><i>#M8R3TA · Quiz</i><i>#H2N9WE · Guess &amp; Win</i><i>+33</i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <header class="block-head rv"><span>03</span><h3>Campaign lifecycle</h3><p>Every campaign moves through the same four stages.</p></header>
+      <ol class="life rv">
+        <li>
+          <span class="life-ic"><svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6M10 19a2 2 0 0 0 4 0"/></svg></span>
+          <span class="life-tag">Upcoming</span>
+          <b>Announced</b>
+          <span class="life-txt">The campaign is shown before it opens.</span>
+          <span class="life-act">Set a reminder</span>
+        </li>
+        <li>
+          <span class="life-ic"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+          <span class="life-tag">Active</span>
+          <b>Open to take part</b>
+          <span class="life-txt">People participate and get their IDs.</span>
+          <span class="life-act">Participate</span>
+        </li>
+        <li class="hot">
+          <span class="life-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7"/></svg></span>
+          <span class="life-tag"><i></i>Live</span>
+          <b>The draw room opens</b>
+          <span class="life-txt">Everyone watches the winners drawn live.</span>
+          <span class="life-act">Watch the draw</span>
+        </li>
+        <li>
+          <span class="life-ic"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg></span>
+          <span class="life-tag">Closed</span>
+          <b>Winners announced</b>
+          <span class="life-txt">Prizes are claimed with the reference.</span>
+          <span class="life-act">See winners</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SYSTEM 01 · LIVE DRAW ============================ -->
+<!-- Drawn like the app's draw rooms (features/live_draw): countdown → running → revealing → revealed, tier by tier. -->
+<section class="sec alt live" id="live">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">System 01 · Live draw</p>
+      <h2 class="h2 rv" style="--d:100ms">Every winner, drawn <em>live.</em></h2>
+      <p class="lede rv" style="--d:200ms">When the draw goes live, a countdown holds the room. Then the machine runs with no result until the winner is drawn, and lands on that Participant ID in front of everyone. The ID is matched to the participant, checked against the campaign rules, and the prize is awarded, one tier at a time.</p>
+    </div>
+    <div class="draw-tabs rv" id="drawTabs" role="tablist" aria-label="Live draw method">
+      <button type="button" role="tab" aria-selected="true" data-m="bowl">Glass Bowl</button>
+      <button type="button" role="tab" aria-selected="false" data-m="spinner">Spinner</button>
+      <button type="button" role="tab" aria-selected="false" data-m="slot">Slot Machine</button>
+    </div>
+    <div class="live-grid">
+      <div class="room rv" id="room">
+        <div class="room-top">
+          <div class="room-title"><small>Dashain Mega Draw · Peak Motors</small><strong id="roomTier">Grand Prize: Honda Dio scooter</strong></div>
+          <span class="room-status" id="roomStatus" data-phase="idle">Waiting to start</span>
+        </div>
+        <div class="room-stage" id="roomStage">
+          <div class="room-m" data-m="bowl"><canvas id="bowlCv" class="bowl-cv" role="img" aria-label="Glass bowl of Participant ID tickets"></canvas></div>
+          <div class="room-m" data-m="spinner" hidden><div class="room-wheel"><canvas class="wheel-cv" id="idWheel" role="img" aria-label="Spinner with entrants split into Groups 1 to 10"></canvas></div></div>
+          <div class="room-m" data-m="slot" hidden>
+            <div class="arcade" id="arcade">
+              <div class="ar-dome"><div class="ar-marquee"><div class="ar-bulbs" id="arBulbs"></div><b>LUCKY DRAW</b></div></div>
+              <div class="ar-body">
+                <span class="rivet r1"></span><span class="rivet r2"></span><span class="rivet r3"></span><span class="rivet r4"></span>
+                <div class="ar-window"><div class="ar-reels" id="arReels"></div><i class="ar-pay"></i></div>
+                <div class="ar-deck"><span class="lamp"></span><span class="knob"></span><span class="knob"></span><span class="lamp"></span></div>
+              </div>
+              <div class="ar-plinth"><div class="ar-tray"></div></div>
+              <div class="ar-lever" aria-hidden="true"><i></i></div>
+            </div>
+          </div>
+          <div class="countdown" id="countdown" hidden>
+            <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="cd-track"/><circle cx="60" cy="60" r="52" class="cd-ring" id="cdRing"/></svg>
+            <b id="cdNum">5</b><span>Get ready…</span>
+          </div>
+        </div>
+        <div class="room-foot">
+          <span class="room-aud"><i></i><b id="roomAud">1,284</b> watching</span>
+          <span class="room-pool"><b id="poolCount">36</b> eligible IDs</span>
+          <button class="btn btn-primary btn-sm" id="drawBtn">Start live draw</button>
+        </div>
+      </div>
+      <div class="live-side">
+        <ol class="verify" id="verify">
+          <li><b>Select Participant ID</b><span>Waiting for the draw</span></li>
+          <li><b>Match participant</b><span>Waiting</span></li>
+          <li><b>Verify eligibility</b><span>Waiting</span></li>
+          <li><b>Announce winner live</b><span>Waiting</span></li>
+        </ol>
+        <div class="winner frame" id="winnerCard" aria-live="polite">
+          <span class="winner-badge" id="wTier">Grand Prize</span>
+          <strong id="wName">Not drawn yet</strong>
+          <p class="winner-prize" id="wPrize">Honda Dio scooter</p>
+          <dl>
+            <div><dt>Participant ID</dt><dd id="wId">…</dd></div>
+            <div><dt>Participation</dt><dd id="wHow">…</dd></div>
+            <div><dt>Entered</dt><dd id="wWhen">…</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SYSTEM 02 · GAMES ============================ -->
+<!-- The three games the platform runs (backend GameType: jhandi_burja, spin_win, slot_machine). -->
+<section class="sec games" id="games">
+  <div class="wrap">
+    <div class="sec-head wide">
+      <p class="kicker rv">System 02 · Games &amp; daily rewards</p>
+      <h2 class="h2 rv" style="--d:100ms">Game campaigns people <em>play.</em></h2>
+      <p class="lede rv" style="--d:150ms">Games are a separate feature from campaign participation. A brand picks a game and opens a game campaign; players choose a brand's campaign and play by its rules. Jhandi Burja plays live in a room with everyone; Spin &amp; Win and Slot Machine are played on your own.</p>
+      <ol class="flow-strip rv" style="--d:200ms" aria-label="Game flow">
+        <li>Brand</li><li>Choose game</li><li>Open game campaign</li><li>User selects campaign</li><li>Play: live room or self play</li><li class="end">Win by campaign rules</li>
+      </ol>
+    </div>
+
+    <!-- Browse brand game campaigns -->
+    <div class="gc">
+      <div class="gc-list">
+        <article class="gc-card frame rv">
+          <div class="gc-top"><span class="gc-brand">Everest Coffee</span><span class="pill-l self">Self play</span></div>
+          <h4>Spin &amp; Win</h4>
+          <ul class="gc-rules"><li><b>1</b> spin a day</li><li><b>Try again</b> gives an extra spin</li><li class="on"><b>Daily rewards</b> on</li></ul>
+          <div class="gc-foot"><span>Cash &amp; vouchers</span><a href="#play" class="btn btn-primary btn-sm">Play now</a></div>
+        </article>
+        <article class="gc-card frame rv" style="--d:80ms">
+          <div class="gc-top"><span class="gc-brand">Summit Mobile</span><span class="pill-l live"><i></i>Live room</span></div>
+          <h4>Jhandi Burja</h4>
+          <ul class="gc-rules"><li><b>1,000</b> starting coins</li><li><b>2× to 6×</b> payout</li><li><b>Top players</b> win data packs</li></ul>
+          <div class="gc-foot"><span><b>2,431</b> in the room</span><a href="#jhandi" class="btn btn-primary btn-sm">Join live room</a></div>
+        </article>
+        <article class="gc-card frame rv" style="--d:160ms">
+          <div class="gc-top"><span class="gc-brand">CityMart</span><span class="pill-l self">Self play</span></div>
+          <h4>Slot Machine</h4>
+          <ul class="gc-rules"><li><b>1</b> pull a day</li><li><b>Try again</b> gives an extra pull</li><li class="on"><b>Daily rewards</b> on</li></ul>
+          <div class="gc-foot"><span>Gift hampers &amp; products</span><a href="#slotgame" class="btn btn-primary btn-sm">Play now</a></div>
+        </article>
+      </div>
+      <aside class="gc-rulesbox frame rv" style="--d:200ms">
+        <span class="side-no">Set by the brand</span>
+        <h3>Every game campaign has its own rules</h3>
+        <ul class="ep-opts">
+          <li>Rewards: cash, vouchers, products, gift hampers</li>
+          <li>Winning conditions</li>
+          <li>Number of plays</li>
+          <li>Daily rewards, when switched on</li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- 01 Jhandi Burja -->
+    <article class="game" id="jhandi">
+      <div class="stage rv">
+        <div class="stage-top"><span class="pill live"><i></i>Live room</span><span class="pill">Round <b id="jbRound">#128</b></span><span class="pill">Players <b id="jbPlayers">2,431</b></span></div>
+        <div class="jb-table"><div class="jb-dice" id="jbDice"></div></div>
+        <div class="jb-tally" id="jbTally" role="radiogroup" aria-label="Pick a face"></div>
+        <div class="stage-foot">
+          <p class="outcome" id="jbOutcome" aria-live="polite">Pick a face, then roll.</p>
+          <button class="btn btn-primary btn-sm" id="jbRoll">Roll the dice</button>
+        </div>
+      </div>
+      <div class="game-copy rv" style="--d:120ms">
+        <span class="game-no">Game 01 · Live game</span>
+        <h3 class="h3">Jhandi Burja</h3>
+        <p class="game-pitch">Bring the traditional game into a live digital event experience.</p>
+        <ol class="steps">
+          <li>Pick a face and stake your coins.</li>
+          <li>Six dice roll live for everyone at once.</li>
+          <li>Two or more matches pays your stake × matches.</li>
+        </ol>
+        <dl class="facts"><div><dt>Dice</dt><dd>6</dd></div><div><dt>Payout</dt><dd>2× to 6×</dd></div><div><dt>Start with</dt><dd>1,000 coins</dd></div></dl>
+      </div>
+    </article>
+
+    <!-- 02 Spin & Win -->
+    <article class="game flip">
+      <div class="stage rv" id="gwStage">
+        <div class="stage-top"><span class="pill self">Self play</span><span class="pill">Spins <b>1</b></span><span class="pill">Prizes <b>8</b></span></div>
+        <div class="gw" id="gw"><canvas class="wheel-cv" id="galleryWheel" aria-label="Spin and Win prize wheel" role="img"></canvas></div>
+        <div class="stage-foot">
+          <p class="outcome">Land on a prize to win it. Land on Try again for an extra spin.</p>
+          <a href="#play" class="btn btn-line btn-sm">Spin it below ↓</a>
+        </div>
+      </div>
+      <div class="game-copy rv" style="--d:120ms">
+        <span class="game-no">Game 02 · Self play</span>
+        <h3 class="h3">Spin &amp; Win</h3>
+        <p class="game-pitch">Turn your brand, prizes and offers into an interactive spinning experience.</p>
+        <ol class="steps">
+          <li>Open the brand's game campaign and spin the wheel yourself.</li>
+          <li>Land on a prize and it's yours.</li>
+          <li>Land on Try again and you get an extra spin.</li>
+        </ol>
+        <dl class="facts"><div><dt>Spins</dt><dd>1 per play</dd></div><div><dt>Try again</dt><dd>Extra spin</dd></div><div><dt>Claim</dt><dd>8-digit code</dd></div></dl>
+      </div>
+    </article>
+
+    <!-- 03 Slot Machine -->
+    <article class="game" id="slotgame">
+      <div class="stage rv">
+        <div class="stage-top"><span class="pill self">Self play</span><span class="pill">Pulls <b id="slotLeft">1</b></span><span class="pill">Prize slots <b>8</b></span></div>
+        <div class="slot" id="slot" role="button" tabindex="0" aria-label="Spin the slot machine">
+          <div class="slot-lights" id="slotLights"></div>
+          <div class="slot-window">
+            <div class="reel"><div class="strip"></div></div>
+            <div class="reel"><div class="strip"></div></div>
+            <div class="reel"><div class="strip"></div></div>
+            <i class="payline"></i>
+          </div>
+          <div class="slot-lever" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="stage-foot">
+          <p class="outcome" id="slotMsg" aria-live="polite">One pull. Three matching symbols name your prize.</p>
+          <button class="btn btn-primary btn-sm" id="slotBtn">Pull the lever</button>
+        </div>
+      </div>
+      <div class="game-copy rv" style="--d:120ms">
+        <span class="game-no">Game 03 · Self play</span>
+        <h3 class="h3">Slot Machine</h3>
+        <p class="game-pitch">Create a visually exciting instant-win experience for events and promotions.</p>
+        <ol class="steps">
+          <li>Open the brand's game campaign and pull the lever yourself.</li>
+          <li>The reels land on one of the prize slots: that prize is yours.</li>
+          <li>Land on Try again and you get an extra pull.</li>
+        </ol>
+        <dl class="facts"><div><dt>Pulls</dt><dd>1 per play</dd></div><div><dt>Try again</dt><dd>Extra pull</dd></div><div><dt>Claim</dt><dd>8-digit code</dd></div></dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ PLAY ============================ -->
+<section class="sec play" id="play">
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+  <div class="wrap play-grid">
+    <div class="play-copy">
+      <p class="kicker rv">Try a game campaign</p>
+      <h2 class="h2 rv" style="--d:100ms">Don't just look at Winzy. <em>Play it.</em></h2>
+      <p class="lede rv" style="--d:200ms">A real Spin &amp; Win, the way players get it: one spin. Land on a prize and it's yours; land on Try again and you get an extra spin.</p>
+      <div class="spin-ctl rv" style="--d:300ms"><button class="btn btn-primary btn-lg" id="spinBtn">Spin Now</button><span class="spins-left">Spins left <b id="spinsLeft">1</b></span></div>
+      <div class="reward frame" id="reward" aria-live="polite">
+        <span class="reward-ic" id="rwIc">★</span>
+        <div><small id="rwLabel">You won</small><strong id="rwName">…</strong></div>
+        <p class="reward-code"><span>Sample claim code</span><b id="rwCode">••••••••</b></p>
+      </div>
+    </div>
+    <div class="wheel-wrap rv" id="wheelWrap">
+      <canvas class="wheel-cv" id="wheel" role="img" aria-label="Spin and win wheel"></canvas>
+      <button class="wheel-hub" id="hubBtn" aria-label="Spin the wheel">Spin</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EVENTS ============================ -->
+<section class="sec events" id="events">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <p class="kicker rv">Built for events</p>
+        <h2 class="h2 rv" style="--d:100ms">Built for the moments people <em>remember.</em></h2>
+      </div>
+      <p class="lede rv" style="--d:200ms">Every event gets the campaign or game that fits the crowd, from a festival stage to a retail counter.</p>
+    </div>
+    <ul class="event-grid" id="eventGrid"></ul>
+  </div>
+</section>
+
+<!-- ============================ HOW ============================ -->
+<section class="sec alt how" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker rv">How Winzy works</p>
+      <h2 class="h2 rv" style="--d:100ms">Two systems. <em>Six steps</em> each.</h2>
+    </div>
+    <div class="draw-tabs rv" id="howTabs" role="tablist" aria-label="Which system">
+      <button type="button" role="tab" aria-selected="true" data-t="campaign">Campaign &amp; live draw</button>
+      <button type="button" role="tab" aria-selected="false" data-t="games">Games &amp; daily rewards</button>
+    </div>
+    <ol class="timeline" id="timeline" data-t="campaign">
+      <li class="rv"><span class="tl-no">01</span><b>Choose an event</b><span>The occasion the campaign runs under: a festival, a launch or an expo.</span></li>
+      <li class="rv" style="--d:80ms"><span class="tl-no">02</span><b>Create a campaign</b><span>Details, prizes, dates and eligibility rules.</span></li>
+      <li class="rv" style="--d:160ms"><span class="tl-no">03</span><b>Set participation</b><span>Required: Bill Scan, Guess &amp; Win, Quiz, Yes/No, Poll or Points.</span></li>
+      <li class="rv" style="--d:240ms"><span class="tl-no">04</span><b>Users participate</b><span>Each one gets a unique Participant ID.</span></li>
+      <li class="rv" style="--d:320ms"><span class="tl-no">05</span><b>Live draw</b><span>Glass bowl, spinner or slot machine draws an ID, live.</span></li>
+      <li class="rv" style="--d:400ms"><span class="tl-no">06</span><b>Win the prize</b><span>The ID is matched, checked and awarded by the campaign rules.</span></li>
+    </ol>
+    <ol class="timeline" id="timelineGames" data-t="games" hidden>
+      <li><span class="tl-no">01</span><b>Choose a game</b><span>Jhandi Burja, Spin &amp; Win or Slot Machine.</span></li>
+      <li><span class="tl-no">02</span><b>Open a game campaign</b><span>Rewards, winning conditions, number of plays, daily rewards.</span></li>
+      <li><span class="tl-no">03</span><b>Users pick a campaign</b><span>They browse the brands' game campaigns and choose one.</span></li>
+      <li><span class="tl-no">04</span><b>Live room or self play</b><span>Jhandi Burja plays live with everyone; Spin &amp; Win and Slot Machine you play yourself.</span></li>
+      <li><span class="tl-no">05</span><b>Play the game</b><span>One spin or pull; Try again gives an extra one.</span></li>
+      <li><span class="tl-no">06</span><b>Win the reward</b><span>Prizes and daily rewards, as the brand set them.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ ANALYTICS ============================ -->
+<section class="sec analytics" id="analytics">
+  <div class="wrap">
+    <div class="sec-head wide">
+      <p class="kicker rv">Analytics &amp; insights</p>
+      <h2 class="h2 rv" style="--d:100ms">Turn every play into <em>business insight.</em></h2>
+      <p class="lede rv" style="--d:150ms">Analytics gives brands a clear view of campaign performance, user engagement, brand preferences and sales impact.</p>
+      <ol class="flow-strip rv" style="--d:200ms" aria-label="Analytics flow">
+        <li>Brand</li><li>Campaign</li><li>User activity</li><li>Analytics</li><li class="end">Business insights</li>
+      </ol>
+    </div>
+
+    <div class="an">
+      <div class="an-nav rv" id="anNav" role="tablist" aria-label="What brands can track"></div>
+      <div class="an-panel frame rv" id="anPanel" role="tabpanel" aria-live="polite"></div>
+    </div>
+
+    <div class="an-qs rv">
+      <h3>Questions Winzy answers for brands</h3>
+      <p class="an-qs-sub">Ask it the way a brand would. The answer comes straight from campaign activity.</p>
+      <div class="an-q-list" id="anQs"></div>
+    </div>
+    <p class="note rv">All figures shown are sample data for illustration.</p>
+  </div>
+</section>
+
+<!-- ============================ FINAL ============================ -->
+<section class="final" id="demo">
+  <div class="wrap final-in">
+    <p class="kicker rv">Let's build yours</p>
+    <h2 class="h1 rv" style="--d:100ms">Your next campaign can be something people <em>play.</em></h2>
+    <p class="lede rv" style="--d:200ms">Tell us about your brand, your events, and the games you want to run.</p>
+    <div class="ctas rv" style="--d:300ms">
+      <a href="#demo" class="btn btn-primary btn-lg" data-demo>Request a Demo <span class="arr">→</span></a>
+      <a href="#platform" class="btn btn-line btn-lg">See the Platform</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#top" class="brand"><img class="brand-logo" src="assets/winzy-logo.png" alt="" width="40" height="35">Winzy</a>
+    <span>Make every campaign a chance to win.</span>
+    <span>© 2026 Winzy</span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
