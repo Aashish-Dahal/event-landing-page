@@ -862,6 +862,50 @@ svg.side-art{ display:block; width:100%; max-width:320px; }
 .q-go i{ font-style:normal; display:grid; place-items:center; width:28px; height:28px; flex:none; border-radius:50%; border:1px solid var(--line-2); color:var(--accent); transition:background .25s, color .25s, border-color .25s, transform .3s var(--ease); }
 .an-q-list button:hover .q-go{ color:var(--accent); }
 .an-q-list button:hover .q-go i{ background:var(--accent); border-color:var(--accent); color:#fff; transform:translateX(3px); }
+/* ---------- Game 04 · Scratch Card ---------- */
+.sc-ticket{
+  position:relative; z-index:1; width:min(100%, 330px); margin:auto; padding:18px 18px 20px; border-radius:22px;
+  background:radial-gradient(120% 80% at 50% 10%, #9e1427, #5a0913 60%, #3a050c);
+  border:6px solid var(--gold); box-shadow:inset 0 0 0 1px rgba(255,226,163,.45), 0 24px 50px -24px rgba(0,0,0,.7);
+}
+.sc-title{ margin:0 0 12px; text-align:center; font:800 italic 30px/1 var(--display); letter-spacing:-.02em; color:#fff; text-shadow:0 3px 4px rgba(0,0,0,.45); }
+.sc-title span{ display:block; background:linear-gradient(180deg, #fff1b8, #e8b326 55%, #8a6410); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.sc-panel{ position:relative; aspect-ratio:4/3; border-radius:14px; overflow:hidden; border:3px solid var(--gold); touch-action:none; }
+.sc-prize{
+  position:absolute; inset:0; display:grid; place-content:center; justify-items:center; gap:6px; text-align:center; padding:10px;
+  background:radial-gradient(circle at 50% 45%, #ffb03a, #c8102e 75%); color:#fff;
+}
+.sc-ic{ display:grid; place-items:center; width:64px; height:64px; border-radius:50%; background:#fff; font-size:34px; box-shadow:0 6px 16px rgba(0,0,0,.25); }
+.sc-prize small{ font:700 11px/1 var(--sans); letter-spacing:.14em; padding:4px 10px; border-radius:999px; background:rgba(255,255,255,.2); }
+.sc-prize strong{ font:800 20px/1.1 var(--display); letter-spacing:-.02em; }
+.sc-foil{ position:absolute; inset:0; width:100%; height:100%; cursor:grab; transition:opacity .35s var(--ease); }
+.sc-foil.gone{ opacity:0; pointer-events:none; }
+
+/* ---------- Game 05 · Gift Box ---------- */
+.gb-grid{ position:relative; z-index:1; display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:30px 18px; width:min(100%, 380px); margin:auto; padding-top:26px; }
+.gb-box{ position:relative; aspect-ratio:1; border:0; padding:0; background:none; cursor:pointer; transition:opacity .3s var(--ease), transform .2s var(--ease); }
+.gb-box:hover:not(:disabled){ transform:translateY(-3px); }
+.gb-box:disabled{ cursor:default; }
+.gb-box.dim{ opacity:.4; }
+.gb-body{ position:absolute; left:7%; right:7%; bottom:0; height:62%; border-radius:0 0 8px 8px; background:linear-gradient(135deg, #2f8fe8, #1c63b8); }
+.gb-body::before{ content:""; position:absolute; left:40%; width:20%; top:0; bottom:0; background:#ffa726; }
+.gb-num{ position:absolute; left:6px; bottom:4px; font:900 15px/1 var(--display); color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.4); }
+.gb-lid{ position:absolute; left:0; right:0; bottom:60%; height:26%; border-radius:6px; background:linear-gradient(180deg, #45a3f5, #2f8fe8); box-shadow:0 2px 4px rgba(0,0,0,.25); transition:transform .45s cubic-bezier(.2,1.4,.4,1), opacity .45s var(--ease); }
+.gb-lid::before{ content:""; position:absolute; left:41%; width:18%; top:0; bottom:0; background:#ffa726; }
+.gb-lid::after{ content:"🎀"; position:absolute; left:50%; bottom:62%; transform:translateX(-50%); font-size:clamp(22px, 5vw, 34px); line-height:1; }
+.gb-box.open .gb-lid{ transform:translate(30%, -140%) rotate(28deg); opacity:0; }
+.gb-box.open .gb-body{ background:linear-gradient(180deg, #0d2e57 0 22%, #2f8fe8 22%, #1c63b8); }
+.gb-box.wobble{ animation:gbWobble .42s ease-in-out infinite; }
+@keyframes gbWobble{ 0%,100%{ transform:rotate(0) } 25%{ transform:rotate(-6deg) } 75%{ transform:rotate(6deg) } }
+.gb-out{ position:absolute; left:50%; bottom:58%; transform:translate(-50%, 30%) scale(.3); opacity:0; display:grid; justify-items:center; gap:4px; transition:transform .6s cubic-bezier(.2,1.4,.4,1), opacity .3s var(--ease); pointer-events:none; }
+.gb-box.open .gb-out{ transform:translate(-50%, 0) scale(1); opacity:1; }
+.gb-out i{ display:grid; place-items:center; width:46px; height:46px; border-radius:50%; background:#fff; font-style:normal; font-size:24px; box-shadow:0 0 18px rgba(177,139,255,.8); }
+.gb-out span{ white-space:nowrap; font:800 11px/1 var(--sans); padding:4px 8px; border-radius:999px; background:var(--stage-accent); color:#1b0b3a; }
+.gb-out.empty i{ box-shadow:none; }
+.gb-out.empty span{ background:rgba(0,0,0,.55); color:#fff; }
+.gb-box.had::after{ content:"It was here!"; position:absolute; left:50%; top:-22px; transform:translateX(-50%); white-space:nowrap; font:800 10px/1 var(--sans); padding:4px 8px; border-radius:999px; background:var(--stage-accent); color:#1b0b3a; }
+.gb-box.had .gb-body{ box-shadow:0 0 22px 4px rgba(177,139,255,.7); }
+
 @media (max-width:900px){
   .an-q-list button{ grid-template-columns:1fr auto; gap:10px 16px; padding:16px 18px; }
   .q-q{ grid-column:1 / -1; }
@@ -995,6 +1039,7 @@ svg.side-art{ display:block; width:100%; max-width:320px; }
 }
 
 @media (prefers-reduced-motion: reduce){
+  .gb-box.wobble{ animation:none; }
   html{ scroll-behavior:auto; }
   *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; }
   .js .rv{ transition-duration:.001ms !important; }

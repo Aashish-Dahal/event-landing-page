@@ -549,6 +549,135 @@
   }, 120);
 
   /* ---------------------------------------------------------
+     GAME 04 — Scratch Card (two foils: silver, then copper)
+     --------------------------------------------------------- */
+  const scFoil = $('#scFoil'), scPanel = $('#scPanel'), scMsg = $('#scMsg'), scBtn = $('#scBtn');
+  const scLeftEl = $('#scLeft');
+  // What can be under the foil; null is a Try again card.
+  const SC_PRIZES = [
+    ['💵', 'Rs 100 cashback'], ['🎟️', 'A 20% voucher'], ['🎧', 'Wireless earbuds'],
+    ['🧺', 'A gift hamper'], ['🏆', 'The Grand Prize'], null, null,
+  ];
+  const scCtx = scFoil.getContext('2d');
+  const SC_COLS = 24, SC_ROWS = 18, SC_REVEAL = .6;
+  let scWear, scPrize, scDone, scLast;
+  function paintFoil() {
+    const r = scPanel.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    scFoil.width = r.width * dpr; scFoil.height = r.height * dpr;
+    const w = scFoil.width, h = scFoil.height;
+    scCtx.setTransform(1, 0, 0, 1, 0, 0);
+    scCtx.globalCompositeOperation = 'source-over';
+    // Copper layer, then silver over it — scratching wears the silver first.
+    const copper = scCtx.createLinearGradient(0, 0, w, h);
+    ['#b9772e', '#e2a85a', '#8e5520', '#cf9146'].forEach((c, i, a) => copper.addColorStop(i / (a.length - 1), c));
+    scCtx.fillStyle = copper; scCtx.fillRect(0, 0, w, h);
+    const silver = scCtx.createLinearGradient(0, 0, w, h);
+    ['#c3c8d0', '#eef1f4', '#a4abb5', '#dce0e5', '#b1b7c0'].forEach((c, i, a) => silver.addColorStop(i / (a.length - 1), c));
+    scCtx.fillStyle = silver; scCtx.fillRect(0, 0, w, h);
+    scCtx.strokeStyle = 'rgba(255,255,255,.2)'; scCtx.lineWidth = 3 * dpr;
+    for (let x = -h; x < w; x += 14 * dpr) { scCtx.beginPath(); scCtx.moveTo(x, h); scCtx.lineTo(x + h, 0); scCtx.stroke(); }
+    scCtx.fillStyle = '#4b525c'; scCtx.font = `900 ${15 * dpr}px Inter, system-ui, sans-serif`;
+    scCtx.textAlign = 'center'; scCtx.textBaseline = 'middle';
+    scCtx.fillText('🪙  SCRATCH HERE', w / 2, h / 2);
+  }
+  function newCard() {
+    const p = SC_PRIZES[Math.floor(Math.random() * SC_PRIZES.length)];
+    scPrize = p;
+    $('#scIc').textContent = p ? p[0] : '🍀';
+    $('#scLabel').textContent = p ? 'YOU WON' : 'SO CLOSE';
+    $('#scName').textContent = p ? p[1] : 'Try again';
+    scWear = new Uint8Array(SC_COLS * SC_ROWS);
+    scDone = false; scLast = null;
+    scFoil.classList.remove('gone');
+    scLeftEl.textContent = '1';
+    scMsg.classList.remove('win');
+    scMsg.textContent = 'Rub the silver foil, then the copper under it.';
+    paintFoil();
+  }
+  function scratchAt(e) {
+    if (scDone) return;
+    const r = scFoil.getBoundingClientRect(), dpr = scFoil.width / r.width;
+    const x = (e.clientX - r.left) * dpr, y = (e.clientY - r.top) * dpr, rad = 13 * dpr;
+    // Each pass wears the foil only partly: the first rubs reveal copper,
+    // more of them reach the prize.
+    scCtx.globalCompositeOperation = 'destination-out';
+    scCtx.strokeStyle = 'rgba(0,0,0,.35)'; scCtx.lineWidth = rad * 2; scCtx.lineCap = 'round';
+    scCtx.beginPath(); scCtx.moveTo(scLast ? scLast[0] : x, scLast ? scLast[1] : y); scCtx.lineTo(x, y); scCtx.stroke();
+    scLast = [x, y];
+    const cw = scFoil.width / SC_COLS, ch = scFoil.height / SC_ROWS;
+    for (let c = 0; c < SC_COLS; c++) for (let rr = 0; rr < SC_ROWS; rr++) {
+      if (Math.hypot((c + .5) * cw - x, (rr + .5) * ch - y) <= rad && scWear[rr * SC_COLS + c] < 255) scWear[rr * SC_COLS + c]++;
+    }
+    const cleared = scWear.reduce((n, v) => n + (v >= 4), 0) / scWear.length;
+    if (cleared >= SC_REVEAL) revealCard();
+  }
+  function revealCard() {
+    scDone = true;
+    scFoil.classList.add('gone');
+    scLeftEl.textContent = scPrize ? '0' : '1';
+    scMsg.classList.toggle('win', !!scPrize);
+    scMsg.innerHTML = scPrize ? `<b>You won ${esc(scPrize[1].replace(/^A |^The /, m => m.toLowerCase()))}!</b>` : 'Try again. <b>You get an extra card.</b>';
+    scBtn.textContent = scPrize ? 'New card' : 'Use extra card';
+  }
+  let scDown = false;
+  scFoil.addEventListener('pointerdown', e => { scDown = true; scLast = null; scFoil.setPointerCapture(e.pointerId); scratchAt(e); });
+  scFoil.addEventListener('pointermove', e => { if (scDown) scratchAt(e); });
+  ['pointerup', 'pointercancel'].forEach(t => scFoil.addEventListener(t, () => { scDown = false; scLast = null; }));
+  scBtn.addEventListener('click', newCard);
+  addEventListener('resize', () => { if (!scDone) newCard(); });
+  newCard();
+
+  /* ---------------------------------------------------------
+     GAME 05 — Gift Box (pick one of six shuffled boxes)
+     --------------------------------------------------------- */
+  const gbGrid = $('#gbGrid'), gbMsg = $('#gbMsg'), gbBtn = $('#gbBtn'), gbLeftEl = $('#gbLeft');
+  // What the brand put in the six boxes; null is an empty box.
+  const GB_FILL = [['🎧', 'Earbuds'], ['🧺', 'Gift hamper'], null, ['🎟️', 'Voucher'], null, null];
+  gbGrid.innerHTML = Array.from({ length: GB_FILL.length }, (_, i) =>
+    `<button type="button" class="gb-box" aria-label="Box ${i + 1}"><span class="gb-out"><i></i><span></span></span><span class="gb-body"><b class="gb-num">${i + 1}</b></span><span class="gb-lid"></span></button>`
+  ).join('');
+  const gbBoxes = $$('.gb-box', gbGrid);
+  let gbBusy = false;
+  function resetBoxes() {
+    gbBoxes.forEach(b => { b.className = 'gb-box'; b.disabled = false; });
+    gbLeftEl.textContent = '1';
+    gbMsg.classList.remove('win');
+    gbMsg.textContent = "Pick a box. What's inside?";
+    gbBusy = false;
+  }
+  function pickBox(i) {
+    if (gbBusy) return;
+    gbBusy = true;
+    // Shuffled on every pick, so which box you tap says nothing about what's in it.
+    const boxes = GB_FILL.slice().sort(() => Math.random() - .5);
+    const picked = gbBoxes[i], content = boxes[i];
+    gbBoxes.forEach(b => { b.disabled = true; if (b !== picked) b.classList.add('dim'); });
+    picked.classList.add('wobble');
+    gbMsg.textContent = 'Opening your box…';
+    setTimeout(() => {
+      picked.classList.remove('wobble');
+      const out = $('.gb-out', picked);
+      out.classList.toggle('empty', !content);
+      $('i', out).textContent = content ? content[0] : '💨';
+      $('span', out).textContent = content ? content[1] : 'Try again';
+      picked.classList.add('open');
+      if (content) {
+        gbMsg.classList.add('win');
+        gbMsg.innerHTML = `<b>You found ${esc(content[1].toLowerCase())}!</b>`;
+        gbLeftEl.textContent = '0';
+        gbBtn.textContent = 'Play again';
+      } else {
+        boxes.forEach((c, j) => { if (c && j !== i) { gbBoxes[j].classList.remove('dim'); gbBoxes[j].classList.add('had'); } });
+        gbMsg.innerHTML = 'Empty. <b>You get another pick.</b>';
+        gbBtn.textContent = 'Pick again';
+      }
+    }, RM ? 50 : 900);
+  }
+  gbBoxes.forEach((b, i) => b.addEventListener('click', () => pickBox(i)));
+  gbBtn.addEventListener('click', resetBoxes);
+  resetBoxes();
+
+  /* ---------------------------------------------------------
      CAMPAIGNS — ways to enter (backend ParticipationMethod)
      --------------------------------------------------------- */
   const ENTRY = [

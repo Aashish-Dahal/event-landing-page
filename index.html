@@ -95,7 +95,7 @@
       </article>
       <div class="neq rv" style="--d:100ms" aria-label="Participation is not the same as Games"><span>≠</span><small>Two separate systems</small></div>
       <article class="system rv" style="--d:200ms">
-        <header><span class="sys-no">System 02</span><h3>Games</h3><p>Pick a brand's game campaign, play and win. Jhandi Burja runs live; Spin &amp; Win and Slot Machine you play yourself.</p></header>
+        <header><span class="sys-no">System 02</span><h3>Games</h3><p>Pick a brand's game campaign, play and win. Jhandi Burja runs live; Spin &amp; Win, Slot Machine, Scratch Card and Gift Box you play yourself.</p></header>
         <ol class="chain">
           <li>Game</li><li>Brand game campaign</li><li>User selects campaign</li><li>Live room or self play</li><li>Play game</li><li class="end">Game reward</li>
         </ol>
@@ -156,7 +156,7 @@
           <li>Game campaigns can reward play every day</li>
           <li>Switched on by the brand, per game campaign</li>
           <li>Keeps people coming back between campaigns</li>
-          <li>Jhandi Burja, Spin &amp; Win and Slot Machine</li>
+          <li>Jhandi Burja, Spin &amp; Win, Slot Machine, Scratch Card and Gift Box</li>
         </ul>
       </article>
     </div>
@@ -318,13 +318,13 @@
 </section>
 
 <!-- ============================ SYSTEM 02 · GAMES ============================ -->
-<!-- The three games the platform runs (backend GameType: jhandi_burja, spin_win, slot_machine). -->
+<!-- The five games the platform runs (backend GameType: jhandi_burja, spin_win, slot_machine, scratch_card, gift_box). -->
 <section class="sec games" id="games">
   <div class="wrap">
     <div class="sec-head wide">
       <p class="kicker rv">System 02 · Games &amp; daily rewards</p>
       <h2 class="h2 rv" style="--d:100ms">Game campaigns people <em>play.</em></h2>
-      <p class="lede rv" style="--d:150ms">Games are a separate feature from campaign participation. A brand picks a game and opens a game campaign; players choose a brand's campaign and play by its rules. Jhandi Burja plays live in a room with everyone; Spin &amp; Win and Slot Machine are played on your own.</p>
+      <p class="lede rv" style="--d:150ms">Games are a separate feature from campaign participation. A brand picks a game and opens a game campaign; players choose a brand's campaign and play by its rules. Jhandi Burja plays live in a room with everyone; Spin &amp; Win, Slot Machine, Scratch Card and Gift Box are played on your own.</p>
       <ol class="flow-strip rv" style="--d:200ms" aria-label="Game flow">
         <li>Brand</li><li>Choose game</li><li>Open game campaign</li><li>User selects campaign</li><li>Play: live room or self play</li><li class="end">Win by campaign rules</li>
       </ol>
@@ -350,6 +350,18 @@
           <h4>Slot Machine</h4>
           <ul class="gc-rules"><li><b>1</b> pull a day</li><li><b>Try again</b> gives an extra pull</li><li class="on"><b>Daily rewards</b> on</li></ul>
           <div class="gc-foot"><span>Gift hampers &amp; products</span><a href="#slotgame" class="btn btn-primary btn-sm">Play now</a></div>
+        </article>
+        <article class="gc-card frame rv" style="--d:240ms">
+          <div class="gc-top"><span class="gc-brand">Himal Foods</span><span class="pill-l self">Self play</span></div>
+          <h4>Scratch Card</h4>
+          <ul class="gc-rules"><li><b>1</b> card a day</li><li><b>Try again</b> gives an extra card</li><li class="on"><b>Daily rewards</b> on</li></ul>
+          <div class="gc-foot"><span>Cash &amp; vouchers</span><a href="#scratchgame" class="btn btn-primary btn-sm">Play now</a></div>
+        </article>
+        <article class="gc-card frame rv" style="--d:320ms">
+          <div class="gc-top"><span class="gc-brand">Kathmandu Mall</span><span class="pill-l self">Self play</span></div>
+          <h4>Gift Box</h4>
+          <ul class="gc-rules"><li><b>6</b> boxes to pick from</li><li><b>Empty box</b> gives another pick</li><li class="on"><b>Daily rewards</b> on</li></ul>
+          <div class="gc-foot"><span>Products &amp; gift hampers</span><a href="#giftgame" class="btn btn-primary btn-sm">Play now</a></div>
         </article>
       </div>
       <aside class="gc-rulesbox frame rv" style="--d:200ms">
@@ -440,6 +452,58 @@
           <li>Land on Try again and you get an extra pull.</li>
         </ol>
         <dl class="facts"><div><dt>Pulls</dt><dd>1 per play</dd></div><div><dt>Try again</dt><dd>Extra pull</dd></div><div><dt>Claim</dt><dd>8-digit code</dd></div></dl>
+      </div>
+    </article>
+
+    <!-- 04 Scratch Card -->
+    <article class="game flip" id="scratchgame">
+      <div class="stage rv">
+        <div class="stage-top"><span class="pill self">Self play</span><span class="pill">Cards <b id="scLeft">1</b></span><span class="pill">Layers <b>2</b></span></div>
+        <div class="sc-ticket">
+          <p class="sc-title">Scratch <span>&amp; Win!</span></p>
+          <div class="sc-panel" id="scPanel">
+            <div class="sc-prize" id="scPrize"><span class="sc-ic" id="scIc">🎁</span><small id="scLabel">YOU WON</small><strong id="scName">…</strong></div>
+            <canvas class="sc-foil" id="scFoil" aria-label="Scratch the foil to reveal your prize" role="img"></canvas>
+          </div>
+        </div>
+        <div class="stage-foot">
+          <p class="outcome" id="scMsg" aria-live="polite">Rub the silver foil, then the copper under it.</p>
+          <button class="btn btn-primary btn-sm" id="scBtn">New card</button>
+        </div>
+      </div>
+      <div class="game-copy rv" style="--d:120ms">
+        <span class="game-no">Game 04 · Self play</span>
+        <h3 class="h3">Scratch Card</h3>
+        <p class="game-pitch">Give every shopper a lottery-ticket moment, dressed in your brand.</p>
+        <ol class="steps">
+          <li>Open the brand's game campaign and get a card.</li>
+          <li>Scratch off the silver foil, then the copper under it.</li>
+          <li>The prize under the foil is yours; a Try again card gives an extra card.</li>
+        </ol>
+        <dl class="facts"><div><dt>Cards</dt><dd>1 per play</dd></div><div><dt>Try again</dt><dd>Extra card</dd></div><div><dt>Claim</dt><dd>8-digit code</dd></div></dl>
+      </div>
+    </article>
+
+    <!-- 05 Gift Box -->
+    <article class="game" id="giftgame">
+      <div class="stage rv">
+        <div class="stage-top"><span class="pill self">Self play</span><span class="pill">Picks <b id="gbLeft">1</b></span><span class="pill">Boxes <b>6</b></span></div>
+        <div class="gb-grid" id="gbGrid" role="group" aria-label="Pick a gift box"></div>
+        <div class="stage-foot">
+          <p class="outcome" id="gbMsg" aria-live="polite">Pick a box. What's inside?</p>
+          <button class="btn btn-primary btn-sm" id="gbBtn">Shuffle the boxes</button>
+        </div>
+      </div>
+      <div class="game-copy rv" style="--d:120ms">
+        <span class="game-no">Game 05 · Self play</span>
+        <h3 class="h3">Gift Box</h3>
+        <p class="game-pitch">Let people pick their own surprise from a row of wrapped gifts.</p>
+        <ol class="steps">
+          <li>The brand fills each box: a prize, or empty.</li>
+          <li>Boxes are shuffled every pick, so each one is equally likely.</li>
+          <li>Open a prize and it's yours; an empty box gives another pick.</li>
+        </ol>
+        <dl class="facts"><div><dt>Boxes</dt><dd>3 to 8</dd></div><div><dt>Empty box</dt><dd>Extra pick</dd></div><div><dt>Claim</dt><dd>8-digit code</dd></div></dl>
       </div>
     </article>
   </div>
