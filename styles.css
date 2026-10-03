@@ -1050,6 +1050,98 @@ svg.side-art{ display:block; width:100%; max-width:320px; }
   .slot-window{ --sh:58px; }
 }
 
+/* =========================================================
+   FOOTER & LEGAL LINKS
+   ========================================================= */
+.foot-links{ display:flex; gap:20px; align-items:center; }
+.foot-links a{ color:var(--ink-2); font-size:14px; font-weight:500; transition:color .2s ease; }
+.foot-links a:hover{ color:var(--primary); text-decoration:underline; }
+
+/* =========================================================
+   PRIVACY POLICY & LEGAL PAGES
+   ========================================================= */
+.policy-hero{
+  padding:120px 0 50px;
+  background:
+    radial-gradient(45% 45% at 50% 20%, var(--glow), transparent 70%),
+    var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.policy-hero .kicker{ margin-bottom:12px; }
+.policy-hero .h1{ font-size:clamp(2.4rem, 5vw, 4rem); margin-bottom:16px; }
+.policy-meta{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:6px 16px; border-radius:999px;
+  background:var(--surface-2); border:1px solid var(--line-2);
+  font-size:13px; font-weight:600; color:var(--ink-2);
+  margin-bottom:20px;
+}
+.policy-meta-dot{ width:8px; height:8px; border-radius:50%; background:#10b981; }
+
+.policy-body{ padding:50px 0 100px; }
+.policy-layout{ display:grid; grid-template-columns:260px 1fr; gap:48px; align-items:start; }
+.policy-toc{
+  position:sticky; top:96px; padding:24px;
+  background:var(--surface); border:1px solid var(--line-2);
+  border-radius:16px; box-shadow:var(--shadow);
+}
+.policy-toc h4{
+  margin:0 0 16px; font-family:var(--display); font-size:13px;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--accent);
+}
+.policy-toc ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.policy-toc a{
+  font-size:13px; color:var(--ink-2); line-height:1.4; display:block;
+  padding:5px 10px; border-radius:8px; transition:all .2s ease;
+}
+.policy-toc a:hover{ color:var(--primary); background:var(--accent-soft); }
+
+.policy-content{ display:flex; flex-direction:column; gap:32px; }
+.policy-card{
+  background:var(--surface); border:1px solid var(--line-2);
+  border-radius:20px; padding:32px; box-shadow:var(--shadow);
+  transition:border-color .3s ease; scroll-margin-top:90px;
+}
+.policy-card:hover{ border-color:var(--accent-line); }
+.policy-card h2{
+  font-family:var(--display); font-size:clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight:700; color:var(--ink); margin:0 0 16px;
+  display:flex; align-items:center; gap:12px;
+}
+.policy-card h2 .num-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:32px; height:32px; padding:0 8px; border-radius:8px;
+  background:var(--accent-soft); color:var(--accent);
+  font-size:14px; font-weight:700; flex-shrink:0;
+}
+.policy-card h3{
+  font-family:var(--display); font-size:1.15rem; font-weight:700;
+  color:var(--ink); margin:22px 0 10px;
+}
+.policy-card p{ margin:0 0 14px; color:var(--ink-2); line-height:1.7; font-size:15px; }
+.policy-card p:last-child{ margin-bottom:0; }
+.policy-card ul{ margin:0 0 16px; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+.policy-card li{ position:relative; padding-left:24px; color:var(--ink-2); font-size:15px; line-height:1.6; }
+.policy-card li::before{
+  content:""; position:absolute; left:6px; top:10px; width:6px; height:6px;
+  border-radius:50%; background:var(--accent);
+}
+
+.policy-callout{
+  background:linear-gradient(135deg, rgba(83,0,183,.05) 0%, rgba(109,40,217,.1) 100%);
+  border:1px solid var(--accent-line); border-radius:14px;
+  padding:20px 24px; margin-top:16px;
+}
+.policy-callout p{ margin:0 0 8px; color:var(--ink); font-weight:500; }
+.policy-callout p:last-child{ margin-bottom:0; }
+.policy-callout a{ color:var(--primary); font-weight:700; text-decoration:underline; }
+
+@media (max-width:900px){
+  .policy-layout{ grid-template-columns:1fr; gap:32px; }
+  .policy-toc{ display:none; }
+  .policy-card{ padding:24px; }
+}
+
 @media (prefers-reduced-motion: reduce){
   .gb-box.wobble,.gb-box.open .gb-lid{ animation:none; }
   html{ scroll-behavior:auto; }
