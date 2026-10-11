@@ -33,8 +33,18 @@
      Nav
      --------------------------------------------------------- */
   const nav = $('#nav');
-  const onScroll = () => nav.classList.toggle('solid', scrollY > 30);
+  // Highlight the link for the section crossing a line a third of the way down the viewport.
+  const navLinks = $$('.nav-links a').map(a => ({ a, sec: $(a.hash) })).filter(l => l.sec);
+  const spy = () => {
+    const line = innerHeight * .35;
+    let cur = null;
+    navLinks.forEach(l => { if (l.sec.getBoundingClientRect().top <= line && (!cur || l.sec.offsetTop > cur.sec.offsetTop)) cur = l; });
+    if (cur && cur.sec.getBoundingClientRect().bottom < line) cur = null;
+    navLinks.forEach(l => l === cur ? l.a.setAttribute('aria-current', 'location') : l.a.removeAttribute('aria-current'));
+  };
+  const onScroll = () => { nav.classList.toggle('solid', scrollY > 30); spy(); };
   addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', spy);
   onScroll();
 
   /* ---------------------------------------------------------
@@ -641,8 +651,10 @@
   const gbGrid = $('#gbGrid'), gbMsg = $('#gbMsg'), gbTag = $('#gbTag'), gbLeftEl = $('#gbLeft');
   // What the brand put in the six boxes; null is an empty box.
   const GB_FILL = [['🎧', 'Earbuds'], ['🧺', 'Gift hamper'], null, ['🎟️', 'Voucher'], null, null];
+  // The app's wrappings, paper and ribbon, one per box in order.
+  const GB_WRAPS = [['#ff8a1f', '#ffd54f'], ['#e0409f', '#ffc94a'], ['#2f6fe8', '#ffc94a'], ['#e53935', '#ffd54f'], ['#8e44e0', '#7cdb4a'], ['#ffc928', '#ff6d1f']];
   gbGrid.innerHTML = Array.from({ length: GB_FILL.length }, (_, i) =>
-    `<button type="button" class="gb-box" aria-label="Box ${i + 1}"><span class="gb-hole"></span><span class="gb-out"><i></i></span><span class="gb-body"><b class="gb-num">${i + 1}</b></span><span class="gb-lid"></span><span class="gb-tag"></span></button>`
+    `<button type="button" class="gb-box" aria-label="Box ${i + 1}" style="--paper:${GB_WRAPS[i][0]};--ribbon:${GB_WRAPS[i][1]}"><span class="gb-hole"></span><span class="gb-out"><i></i></span><span class="gb-body"><b class="gb-num">${i + 1}</b></span><span class="gb-lid"><span class="gb-bow"><i></i></span></span><span class="gb-tag"></span></button>`
   ).join('');
   const gbBoxes = $$('.gb-box', gbGrid);
   let gbBusy = false;
