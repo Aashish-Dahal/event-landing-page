@@ -54,8 +54,8 @@
   $$('[data-die]').forEach(d => { d.innerHTML = dieHTML(); });
 
   /* ---------------------------------------------------------
-     Prize wheel — Winzy's look: a lit gold rim, yellow / purple / orange
-     wedges each with a prize icon, a crowned WINZY hub, a gold-trimmed
+     Prize wheel — Winzye's look: a lit gold rim, yellow / purple / orange
+     wedges each with a prize icon, a crowned WINZYE hub, a gold-trimmed
      pointer and a glowing purple podium.
      --------------------------------------------------------- */
   const TAU = Math.PI * 2;
@@ -324,7 +324,7 @@
         ctx.beginPath(); ctx.arc(x, y, bulbR, 0, TAU); ctx.fillStyle = mix('#ffd97a', '#ffffff', glow); ctx.fill();
       }
 
-      // Hub: gold ring, purple disc, gold crown and WINZY.
+      // Hub: gold ring, purple disc, gold crown and WINZYE.
       const hr = R * .29;
       ctx.save();
       ctx.shadowColor = 'rgba(40,10,110,.45)'; ctx.shadowBlur = hr * .35; ctx.shadowOffsetY = hr * .08;
@@ -337,7 +337,7 @@
       crown(cx, cy - hr * .3, hr * .42, goldFill(cx, cy - hr * .3, hr * .2));
       ctx.font = `800 ${hr * .33}px Geist, Inter, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillStyle = goldFill(cx, cy + hr * .2, hr * .18);
-      ctx.fillText('WINZY', cx, cy + hr * .22);
+      ctx.fillText('WINZYE', cx, cy + hr * .22);
 
       pointer(cx, D);
     };
@@ -990,7 +990,7 @@
   const arStrips = $$('.ar-strip', arReels);
   const randChars = n => Array.from({ length: n }, () => `<span>${ID_AB[Math.floor(Math.random() * ID_AB.length)]}</span>`).join('');
   const showRef = ref => arStrips.forEach((s, k) => { s.classList.remove('rolling'); s.style.transition = 'none'; s.style.transform = 'translateY(0)'; s.innerHTML = `${randChars(1)}<span>${ref[k]}</span>${randChars(1)}`; });
-  showRef('WINZY!'.slice(0, REF_LEN).padEnd(REF_LEN, '!'));
+  showRef('WINZYE'.slice(0, REF_LEN).padEnd(REF_LEN, '!'));
   $('#arBulbs').innerHTML = Array.from({ length: 11 }, () => '<i></i>').join('');
   const arBulbs = $$('#arBulbs i');
   let chase = 0;
@@ -1376,7 +1376,7 @@
         ['CityMart Bill Scan', 'Summer Sale', '5,940', '9,800', 'Rs 6.1L', '<b class="up">+22%</b>'],
         ['Everest Coffee Guess & Win', 'Coffee Week', '7,380', '12,460', 'Rs 4.2L', '<b class="up">+15%</b>']]) },
   ];
-  // Each question a brand asks, with the answer Winzy gives from the same sample data.
+  // Each question a brand asks, with the answer Winzye gives from the same sample data.
   const QUESTIONS = [
     { q: 'How many users participated?', a: '48,260', s: 'across 6 campaigns. Dashain Mega Draw led with 18,420.', i: 0 },
     { q: 'Which brand campaigns are users choosing?', a: 'Summit Mobile', s: 'Its Jhandi Burja campaign drew 9,860 players, the most joined.', i: 2 },
